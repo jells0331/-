@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#3182f6" />
+    <title>비상기상 | 우리 동네 호우 위험 알림</title>
+    <meta name="description" content="호우 재난 상황에서 내 주변 위험도와 꼭 필요한 행동 요령을 알려드립니다." />
+    <style>
+      :root { color: #191f28; background: #f2f7ff; font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      * { box-sizing: border-box; } body { margin: 0; } button { font: inherit; cursor: pointer; }
+      .app { width: min(100%, 480px); min-height: 100vh; margin: auto; background: #fff; box-shadow: 0 0 48px rgba(34,114,235,.09); }
+      header { display:flex; justify-content:space-between; align-items:center; padding:28px 24px 20px; }
+      .brand, .place, .card, .flood-head, .action { display:flex; align-items:center; } .brand { gap:10px; font-weight:800; font-size:18px; letter-spacing:-.7px; }
+      .logo, .round-icon { display:grid; place-items:center; color:#fff; background:#3182f6; } .logo { width:36px; height:36px; border-radius:14px; }
+      .bell { border:0; border-radius:50%; background:#f2f4f6; color:#4e5968; width:40px; height:40px; display:grid; place-items:center; transition:.2s; }
+      .bell.active { color:#1b64da; background:#e8f3ff; } .context { padding:0 24px 20px; } .place { gap:4px; border:0; background:transparent; padding:0; color:#4e5968; font-size:14px; font-weight:600; }
+      .stamp { color:#8b95a1; font-size:13px; margin:6px 0 0; }
+      .hero { margin:0 20px; border-radius:24px; padding:28px 24px; color:#fff; background:#3182f6; } .hero-top { display:flex; justify-content:space-between; align-items:flex-start; }
+      .eyebrow { margin:0; color:#dbeafe; font-size:15px; font-weight:700; } h1 { margin:4px 0 0; font-size:30px; line-height:1.25; letter-spacing:-2px; }
+      .hero-icon { background:rgba(255,255,255,.15); width:48px; height:48px; border-radius:16px; display:grid; place-items:center; } .forecast { border-top:1px solid rgba(255,255,255,.25); margin:28px 0 0; padding-top:16px; font-size:15px; line-height:1.65; color:#eff6ff; }
+      .guide { padding:28px 24px; } h2 { margin:0; font-size:21px; letter-spacing:-1.2px; } .sub { margin:5px 0 0; color:#8b95a1; font-size:14px; }
+      .actions { margin-top:16px; display:grid; gap:12px; } .action { padding:16px; gap:16px; border-radius:18px; background:#f2f7ff; } .action-icon { width:44px; height:44px; flex:none; border-radius:14px; display:grid; place-items:center; background:#fff; color:#3182f6; font-size:21px; }
+      h3 { margin:0; font-size:16px; letter-spacing:-.5px; } .action p { margin:5px 0 0; color:#6b7684; font-size:13px; line-height:1.45; }
+      .flood { margin:0 24px; border:1px solid #e5e8eb; border-radius:20px; padding:20px; } .flood-head { gap:12px; } .flood-icon { width:40px; height:40px; display:grid; place-items:center; border-radius:12px; color:#f28b00; background:#fff5e8; font-size:20px; } .flood h2 { font-size:16px; }
+      .details { display:none; margin:16px 0 0; padding:12px; background:#f8fafc; border-radius:12px; color:#4e5968; font-size:13px; line-height:1.6; } .details.open { display:block; }
+      .map-button { display:flex; justify-content:center; align-items:center; gap:4px; margin-top:16px; width:100%; padding:0; border:0; background:transparent; color:#1b64da; font-size:14px; font-weight:700; }
+      .bottom { padding:24px 24px 32px; } .alert-button { display:flex; gap:9px; justify-content:center; align-items:center; height:56px; width:100%; border:0; border-radius:16px; color:white; background:#3182f6; font-size:16px; font-weight:800; box-shadow:0 6px 12px rgba(49,130,246,.16); transition:.2s; } .alert-button.active { background:#1b64da; } .emergency { margin:12px 0 0; text-align:center; color:#8b95a1; font-size:12px; }
+      .chevron { font-size:18px; line-height:1; } svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header><div class="brand"><span class="logo">☔</span><span>비상기상</span></div><button id="bell" class="bell" aria-label="알림 설정"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button></header>
+      <section class="context"><button id="place" class="place"><span style="color:#3182f6">●</span> 서울시 영등포구 여의동 <span class="chevron">›</span></button><p class="stamp">9월 2일 오후 3:20 기준</p></section>
+      <section class="hero"><div class="hero-top"><div><p class="eyebrow">현재 우리 동네는</p><h1>호우 주의 단계예요</h1></div><span class="hero-icon">⚠</span></div><p class="forecast">오늘 밤까지 시간당 최대 30mm의<br />강한 비가 예상돼요.</p></section>
+      <section class="guide"><h2>지금 이렇게 해주세요</h2><p class="sub">위험을 줄이는 가장 쉬운 방법이에요</p><div class="actions"><article class="action"><span class="action-icon">⌂</span><div><h3>지하 공간은 피하세요</h3><p>반지하·지하차도 주변은 침수 위험이 있습니다.</p></div></article><article class="action"><span class="action-icon">☂</span><div><h3>보행 중이라면</h3><p>우산보다 안전한 실내로 먼저 이동하세요.</p></div></article><article class="action"><span class="action-icon">☎</span><div><h3>위험을 발견했다면</h3><p>119 또는 안전신문고에 알려주세요.</p></div></article></div></section>
+      <section class="flood"><div class="flood-head"><span class="flood-icon">≈</span><div><h2>침수 위험 구간</h2><p class="sub">내 주변 1km 안에 2곳 있어요</p></div></div><div id="details" class="details">여의나루역 4번 출구 · 국회의사당 지하차도<br />가까이 가지 말고 우회해 주세요.</div><button id="map" class="map-button">지도에서 확인하기 <span class="chevron">›</span></button></section>
+      <section class="bottom"><button id="alert" class="alert-button">⌖ <span>내 위치 위험 알림 받기</span></button><p class="emergency">위급한 상황에서는 119로 바로 신고하세요</p></section>
+    </main>
+    <script>
+      const bell = document.querySelector('#bell'); const alertButton = document.querySelector('#alert'); const label = alertButton.querySelector('span');
+      function toggleAlert() { const enabled = !alertButton.classList.contains('active'); alertButton.classList.toggle('active', enabled); bell.classList.toggle('active', enabled); label.textContent = enabled ? '위험 알림을 받고 있어요' : '내 위치 위험 알림 받기'; }
+      bell.addEventListener('click', toggleAlert); alertButton.addEventListener('click', toggleAlert);
+      document.querySelector('#map').addEventListener('click', () => { const open = document.querySelector('#details').classList.toggle('open'); document.querySelector('#map').innerHTML = open ? '지도 접기 <span class="chevron">⌃</span>' : '지도에서 확인하기 <span class="chevron">›</span>'; });
+      document.querySelector('#place').addEventListener('click', () => alert('현재 위치: 서울시 영등포구 여의동'));
+    </script>
+  </body>
+</html>
